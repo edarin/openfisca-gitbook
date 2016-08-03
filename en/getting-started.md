@@ -2,16 +2,15 @@
 
 This walkthrough presents what you can do with OpenFisca without installing it.
 
-See the [getting started Jupyter Notebook] which illustrates this section.
+See the [getting started Jupyter Notebook](https://github.com/openfisca/openfisca-france/blob/master/notebooks/getting-started.ipynb) which illustrates this section.
 
 ## Explore the legislation
 
-The [legislation explorer](http://legislation.openfisca.fr/) allows you to browse the variables and the parameters
-of the tax and benefit legislation.
+The [legislation explorer](http://legislation.openfisca.fr/) allows you to browse the variables and the parameters of the tax and benefit legislation.
 
 Each variable has its own URL and page, and the same for the parameters.
 
-For example: [af](http://legislation.openfisca.fr/variables/af)
+For example, the "allocations familiales": [af](http://legislation.openfisca.fr/variables/af)
 
 ## Calculate a variable
 
@@ -19,8 +18,7 @@ For example: [af](http://legislation.openfisca.fr/variables/af)
 
 Say we want to calculate the [af](http://legislation.openfisca.fr/variables/af) of a family with 1 parent (they divorced) and 3 children.
 
-Here is the script `test1.py` available
-[here](https://github.com/openfisca/openfisca-france/tree/master/openfisca_france/scripts/getting_started/test1.py), or in the [getting started Jupyter Notebook]:
+Here would be the script:
 
 ```python
 import openfisca_france
@@ -149,37 +147,30 @@ Here is the script `test2.py` available
 or in the [getting started Jupyter Notebook]:
 
 ```python
-import openfisca_france
-from openfisca_france.reforms import plfr2014
+from openfisca_france.reforms import landais_piketty_saez
 
-tax_benefit_system = openfisca_france.init_tax_benefit_system()
-reformed_tax_benefit_system = plfr2014.build_reform(tax_benefit_system)
+reform = landais_piketty_saez.landais_piketty_saez(tax_benefit_system)
 
-scenario = reformed_tax_benefit_system.new_scenario()
-scenario.init_single_entity(
-    period = 2013,
-    parent1 = dict(
-        age = 40,
-        salaire_imposable = 13795,
-        ),
-    )
+def init_profile(scenario):
+    scenario.init_single_entity(
+        period = '2013',
+        parent1 = dict(
+            age = 40,
+            salaire_de_base = 50000,
+            ),
+        )
+    return scenario
 
-simulation = scenario.new_simulation(reference = True)
-impo = simulation.calculate('impo', '2013')
-print impo
+reform_scenario = init_profile(reform.new_scenario())
+reform_simulation = reform_scenario.new_simulation() 
 
-reform_simulation = scenario.new_simulation()
-reform_impo = reform_simulation.calculate('impo', '2013')
-print reform_impo
+print (reform_simulation.calculate('revdisp', '2013'))
 ```
 
 Result:
 
 ```
-[-74.39001465]
-[ 0.]
+[ 15614.34863281]
 ```
 
 The result is a vector of size 1, the number of `foyers_fiscaux` in our test case.
-
-[getting started Jupyter Notebook]: https://github.com/openfisca/openfisca-web-notebook/blob/master/documentation/getting-started.ipynb
