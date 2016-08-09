@@ -9,38 +9,51 @@ The supported operating systems are GNU/Linux distributions (in particular Debia
 
 Other OS should work if they can execute Python and NumPy.
 
+### Install
 
-### Clone git repositories
+You need the [Git](http://www.git-scm.com/) tool to be installed on your system.
 
-You need [Git](http://www.git-scm.com/) tool to be installed on your system.
-
-Create a working directory like `~/Dev/openfisca` and go inside.
-
-> If you need to modify **OpenFisca-Core** source code, follow the [install for development](https://github.com/openfisca/openfisca-core#install-for-development) section before completing the step below. By default just continue below.
-
-Install OpenFisca-France from Git. It is strongly recommended to use the mode `editable` to have the newest updates of the module.
+Be sure to have the last version of `pip` and `wheel` Python packages.
 
 ```
+pip install --upgrade pip wheel
+```
+
+> If you see a permission error, retry with the "root" user.
+
+We recommend to use a virtualenv with [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) in order to isolate OpenFisca packages from your system.
+
+Setup a virtualenv named "openfisca":
+
+```
+pip install virtualenvwrapper
+mkvirtualenv openfisca
+```
+
+> As mentioned in the virtualenvwrapper documentation, don't forget to add this line to your `.bashrc` file:
+>
+>     TODO
+
+Then install OpenFisca:
+
+```
+mkdir -p ~/Dev/openfisca
+cd ~/Dev/openfisca
+
+git clone https://github.com/openfisca/openfisca-core.git
+cd openfisca-core
+pip install --editable .
+python setup.py compile_catalog
+
+cd ..
+
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
 pip install --editable .
 python setup.py compile_catalog
+
+cd ..
 ```
-
-OpenFisca-Core should be installed automatically as a requirement of OpenFisca-France.
-
-
-### Create a virtual environment (recommended)
-
-We recommend to use a virtualenv with [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) in order to solve dependancies and versions problems of packages used by Openfisca. 
-
-Get to your previous repository (``~/Dev/openfisca``) and write the command:
-
-```
-pip install virtualenvwrapper
-mkvirtualenv Name_of_your_virtual_env
-```
-
 
 ## Test the installation
 
