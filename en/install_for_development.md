@@ -18,7 +18,7 @@ Create a working directory like `~/Dev/openfisca` and go inside.
 
 > If you need to modify **OpenFisca-Core** source code, follow the [install for development](https://github.com/openfisca/openfisca-core#install-for-development) section before completing the step below. By default just continue below.
 
-Install OpenFisca-France from Git. It is strongly recommanded to use the mode `editable` to have the newest updates of the module.
+Install OpenFisca-France from Git. It is strongly recommended to use the mode `editable` to have the newest updates of the module.
 
 ```
 git clone https://github.com/openfisca/openfisca-france.git
@@ -30,7 +30,7 @@ python setup.py compile_catalog
 OpenFisca-Core should be installed automatically as a requirement of OpenFisca-France.
 
 
-### Create a virtual environnement
+### Create a virtual environment (recommended)
 
 We recommend to use a virtualenv with [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) in order to solve dependancies and versions problems of packages used by Openfisca. 
 
@@ -38,6 +38,7 @@ Get to your previous repository (``~/Dev/openfisca``) and write the command:
 
 ```
 pip install virtualenvwrapper
+mkvirtualenv Name_of_your_virtual_env
 ```
 
 
