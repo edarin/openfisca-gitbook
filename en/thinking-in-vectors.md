@@ -3,7 +3,7 @@
 ## From test case to vectors
 
 Because OpenFisca needs to accept test cases or data as input, it uses vector computing.
-So we need to reason always with vectors instead of values.
+So we need to think always with vectors instead of values.
 
 Let's dive into OpenFisca's internals sightly.
 
