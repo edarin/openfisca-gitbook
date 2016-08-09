@@ -9,9 +9,9 @@ The supported operating systems are GNU/Linux distributions (in particular Debia
 
 Other OS should work if they can execute Python and NumPy.
 
-### Install
+You need [Python](https://www.python.org/downloads/) and the [Git](http://www.git-scm.com/downloads) tool to be installed on your system.
 
-You need the [Git](http://www.git-scm.com/) tool to be installed on your system.
+### Install
 
 Be sure to have the last version of `pip` and `wheel` Python packages.
 
